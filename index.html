@@ -432,8 +432,8 @@
             content: '';
             position: absolute;
             right: 0;
-            top: 15%;
-            height: 70%;
+            top: 20px;
+            height: 40px;
             width: 1px;
             background: rgba(184, 150, 62, 0.3);
         }
@@ -456,6 +456,7 @@
             font-size: 10px;
             color: var(--text-muted);
             line-height: 1.2;
+            margin-top: 8px;
         }
 
         /* Gift Section */
@@ -472,9 +473,11 @@
         }
 
         .envelope-img {
-            width: 300px;
-            /* Increased from 240px */
-            margin-bottom: 15px;
+            width: 80%;
+            max-width: 280px;
+            height: auto;
+            margin: 0 auto 15px;
+            display: block;
             mix-blend-mode: multiply;
             filter: contrast(1.1);
         }
@@ -803,18 +806,18 @@
             </div>
             <div class="detail-item">
                 <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="12" cy="12" r="10" stroke-width="1.5" />
-                    <polyline points="12 6 12 12 16 14" stroke-width="1.5" />
-                </svg>
-                <span class="detail-text">8:30 p.m.</span>
-            </div>
-            <div class="detail-item">
-                <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="1.5" />
                     <circle cx="12" cy="10" r="3" stroke-width="1.5" />
                 </svg>
                 <span class="detail-text">Salón Betsaida</span>
                 <span class="detail-sub">Hermosa Provincia, Bello</span>
+            </div>
+            <div class="detail-item">
+                <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="10" stroke-width="1.5" />
+                    <polyline points="12 6 12 12 16 14" stroke-width="1.5" />
+                </svg>
+                <span class="detail-text">8:30 p.m.</span>
             </div>
         </section>
 
