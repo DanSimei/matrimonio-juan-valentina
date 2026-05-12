@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <header className="header">
             <p className="nos-casamos">Nos Casamos</p>
-            <img src="/assets/images/separador1.png" className="separator-img" alt="Separador" />
+            <img src="assets/images/separador1.png" className="separator-img" alt="Separador" />
             <h1 className="names">Juan Esteban</h1>
             <span className="ampersand">&</span>
             <h1 className="names">Valentina</h1>

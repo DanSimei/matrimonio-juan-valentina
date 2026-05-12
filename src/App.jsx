@@ -31,10 +31,10 @@ function App() {
         <div className="container">
             <div className="top-wrapper">
                 <div className="corner-fl corner-tl">
-                    <img src="/assets/images/corner_br.png" alt="" />
+                    <img src="assets/images/corner_br.png" alt="" />
                 </div>
                 <div className="corner-fl corner-tr">
-                    <img src="/assets/images/corner_br.png" alt="" />
+                    <img src="assets/images/corner_br.png" alt="" />
                 </div>
 
                 <Header />
@@ -42,10 +42,10 @@ function App() {
             </div>
 
             <div className="corner-fl corner-bl">
-                <img src="/assets/images/corner_br.png" alt="" />
+                <img src="assets/images/corner_br.png" alt="" />
             </div>
             <div className="corner-fl corner-br">
-                <img src="/assets/images/corner_br.png" alt="" />
+                <img src="assets/images/corner_br.png" alt="" />
             </div>
 
             <Countdown targetDate={weddingDate} />

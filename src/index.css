@@ -36,7 +36,7 @@ body::before {
     background-image:
         radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(184, 150, 62, 0.05) 0%, transparent 50%),
-        url('/assets/images/bg_bokeh.png');
+        url('assets/images/bg_bokeh.png');
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -81,7 +81,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(to bottom, var(--bg-cream) 0%, rgba(250, 249, 246, 0) 40%), url('/assets/images/bg_bokeh.png');
+    background-image: linear-gradient(to bottom, var(--bg-cream) 0%, rgba(250, 249, 246, 0) 40%), url('assets/images/bg_bokeh.png');
     background-size: cover;
     background-position: top center;
     filter: blur(2px);

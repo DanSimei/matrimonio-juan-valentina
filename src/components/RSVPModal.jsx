@@ -130,7 +130,7 @@ const RSVPModal = ({ isOpen, onClose }) => {
                 ) : (
                     <div id="success-message" style={{ display: 'block' }}>
                         <div style={{ marginBottom: '20px' }}>
-                            <img src="/assets/images/hearth.png" alt="heart" style={{ width: '50px', height: 'auto' }} />
+                            <img src="assets/images/hearth.png" alt="heart" style={{ width: '50px', height: 'auto' }} />
                         </div>
                         <h2>¡Muchas Gracias!</h2>
                         <p style={{ color: 'var(--text-muted)' }}>Tu respuesta ha sido registrada.</p>

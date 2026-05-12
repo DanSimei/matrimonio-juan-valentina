@@ -4,8 +4,8 @@ const PhotoSection = () => {
     return (
         <section className="photo-container">
             <div className="photo-wrapper">
-                <img src="/assets/images/valentina.png" className="photo-half photo-valentina" alt="Valentina" />
-                <img src="/assets/images/juan.png" className="photo-half photo-juan" alt="Juan" />
+                <img src="assets/images/valentina.png" className="photo-half photo-valentina" alt="Valentina" />
+                <img src="assets/images/juan.png" className="photo-half photo-juan" alt="Juan" />
             </div>
             <div className="wavy-divider">
                 <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
