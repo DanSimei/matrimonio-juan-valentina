@@ -6,8 +6,6 @@ const Footer = () => {
         <footer className="footer">
             <div className="location-info reveal">
                 <h3>Ubicación</h3>
-                <p>Hacienda El Vergel</p>
-                <p style={{ opacity: 0.8, fontSize: '12px' }}>Vía Santa Elena, Medellín</p>
 
                 <div className="map-buttons"
                     style={{ display: 'inline-flex', background: 'white', border: '1px solid rgba(184, 150, 62, 0.3)', borderRadius: '50px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.08)' }}>

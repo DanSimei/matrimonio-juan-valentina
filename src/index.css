@@ -13,6 +13,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
 body {
     background-color: #f0ede6;
     font-family: 'Montserrat', sans-serif;
@@ -98,6 +103,55 @@ body::before {
 
     .welcome-content {
         padding: 40px 20px;
+    }
+
+    .details {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .detail-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .countdown-row {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .count-item {
+        padding: 0 10px;
+        min-width: 70px;
+        border-right: none !important;
+    }
+
+    .count-number {
+        font-size: 32px;
+    }
+
+    .gift-box {
+        margin: 20px 15px;
+        padding: 20px 15px;
+    }
+
+    .gift-highlight {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .names {
+        font-size: 38px !important;
+    }
+
+    .welcome-name {
+        font-size: 32px !important;
+    }
+
+    .count-number {
+        font-size: 28px;
     }
 }
 
@@ -380,7 +434,7 @@ body::before {
     border-right: 1px solid rgba(184, 150, 62, 0.3);
 }
 
-.count-num {
+.count-number {
     font-family: 'Cormorant Garamond', serif;
     font-size: 42px;
     line-height: 1;
