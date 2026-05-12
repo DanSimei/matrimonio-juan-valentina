@@ -7,9 +7,9 @@ const Countdown = ({ targetDate }) => {
     return (
         <section className="countdown reveal">
             <div className="countdown-title">
-                <img src="assets/images/hearth.png" alt="heart" style={{ width: '14px', height: 'auto' }} />
+                <img src="/matrimonio-juan-valentina/assets/images/hearth.png" alt="heart" style={{ width: '14px', height: 'auto' }} />
                 <span>Faltan para nuestro gran día</span>
-                <img src="assets/images/hearth.png" alt="heart" style={{ width: '14px', height: 'auto' }} />
+                <img src="/matrimonio-juan-valentina/assets/images/hearth.png" alt="heart" style={{ width: '14px', height: 'auto' }} />
             </div>
             <div className="countdown-row">
                 <div className="count-item">
@@ -29,7 +29,7 @@ const Countdown = ({ targetDate }) => {
                     <span className="count-label">Segundos</span>
                 </div>
             </div>
-            <img src="assets/images/separador1.png" className="separator-img" alt="Separador" />
+            <img src="/matrimonio-juan-valentina/assets/images/separador1.png" className="separator-img" alt="Separador" />
         </section>
     );
 };

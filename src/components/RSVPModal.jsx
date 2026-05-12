@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const RSVPModal = ({ isOpen, onClose }) => {
+const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
-        nombre: '',
+        nombre: prefilledName || '',
         asistencia: 'Sí',
         invitados: '1',
         mensaje: ''
     });
+
+    // Update name if prefilledName prop changes
+    useEffect(() => {
+        if (prefilledName) {
+            setFormData(prev => ({ ...prev, nombre: prefilledName }));
+        }
+    }, [prefilledName]);
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWHVICDd2GsUJ-FMRqz6Re0BYTTiDnttyHg5cgGkuFd9dzh3e3IPYbvLyFUJvXR_OO/exec';
 
@@ -94,24 +101,11 @@ const RSVPModal = ({ isOpen, onClose }) => {
                                 </div>
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="invitados">¿Cuántas personas asistirán en total?</label>
-                                <select
-                                    id="invitados"
-                                    name="invitados"
-                                    value={formData.invitados}
-                                    onChange={handleChange}
-                                >
-                                    {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
-                                        <option key={num} value={num}>
-                                            {num} {num === 1 ? 'Persona (Solo yo)' : 'Personas'}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
+                            {/* Removed guests select as per user request (1 person per link) */}
+                            <input type="hidden" name="invitados" value="1" />
 
                             <div className="form-group">
-                                <label for="mensaje">Mensaje (Opcional)</label>
+                                <label htmlFor="mensaje">Mensaje (Opcional)</label>
                                 <textarea
                                     id="mensaje"
                                     name="mensaje"
@@ -130,7 +124,7 @@ const RSVPModal = ({ isOpen, onClose }) => {
                 ) : (
                     <div id="success-message" style={{ display: 'block' }}>
                         <div style={{ marginBottom: '20px' }}>
-                            <img src="assets/images/hearth.png" alt="heart" style={{ width: '50px', height: 'auto' }} />
+                            <img src="/matrimonio-juan-valentina/assets/images/hearth.png" alt="heart" style={{ width: '50px', height: 'auto' }} />
                         </div>
                         <h2>¡Muchas Gracias!</h2>
                         <p style={{ color: 'var(--text-muted)' }}>Tu respuesta ha sido registrada.</p>
