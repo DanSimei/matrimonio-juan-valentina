@@ -13,24 +13,20 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
         mensaje: ''
     });
 
-    // Update name if prefilledName prop changes
     useEffect(() => {
         if (prefilledName) {
             setFormData(prev => ({ ...prev, nombre: prefilledName }));
         }
     }, [prefilledName]);
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWHVICDd2GsUJ-FMRqz6Re0BYTTiDnttyHg5cgGkuFd9dzh3e3IPYbvLyFUJvXR_OO/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwV2oUwSO_PJZ0qE5bdGwAKm2csQ8IDgxWQEkpEgqpaLHTa0Wimy3SpsKczivNElSda/exec';
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (type === 'checkbox' && name === 'hasGuest') {
             setHasGuest(checked);
-            setFormData(prev => ({ 
-                ...prev, 
-                invitados: checked ? '2' : '1',
-                acompanante: checked ? prev.acompanante : '' 
-            }));
+            // We update invitados immediately to keep it in sync
+            setFormData(prev => ({ ...prev, invitados: checked ? '2' : '1' }));
         } else {
             setFormData(prev => ({ ...prev, [name]: value }));
         }
@@ -40,20 +36,24 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
         e.preventDefault();
         setIsLoading(true);
 
-        const data = {
-            ...formData,
-            key: 'boda2026'
+        // Explicitly construct the data to ensure keys are exactly as expected by GAS
+        const payload = {
+            nombre: formData.nombre.trim(),
+            asistencia: formData.asistencia,
+            invitados: hasGuest ? "2" : "1",
+            acompanante: hasGuest ? (formData.acompanante.trim() || "Acompañante pendiente") : "N/A",
+            mensaje: formData.mensaje.trim() || "Sin mensaje",
+            key: "boda2026"
         };
 
         try {
             await fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                cache: 'no-cache',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'text/plain',
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(payload)
             });
 
             setIsSubmitted(true);
@@ -115,17 +115,17 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
 
                             {formData.asistencia === 'Sí' && (
                                 <>
-                                    <div className="form-group checkbox-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '15px 0' }}>
+                                    <label className="checkbox-container">
                                         <input
                                             type="checkbox"
                                             id="hasGuest"
                                             name="hasGuest"
                                             checked={hasGuest}
                                             onChange={handleChange}
-                                            style={{ width: 'auto', cursor: 'pointer' }}
                                         />
-                                        <label htmlFor="hasGuest" style={{ cursor: 'pointer', margin: 0, fontSize: '14px' }}>Llevaré un acompañante</label>
-                                    </div>
+                                        <span className="checkmark"></span>
+                                        <span className="checkbox-label">Llevaré un acompañante</span>
+                                    </label>
 
                                     {hasGuest && (
                                         <div className="form-group reveal active" style={{ animation: 'fadeInUp 0.5s ease' }}>
