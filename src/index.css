@@ -24,6 +24,12 @@ body {
     padding: 40px 20px;
     overflow-x: hidden;
     position: relative;
+    align-items: flex-start;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 body::before {
@@ -36,7 +42,7 @@ body::before {
     background-image:
         radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(184, 150, 62, 0.05) 0%, transparent 50%),
-        url('/matrimonio-juan-valentina/assets/images/bg_bokeh.png');
+        url('/assets/images/bg_bokeh.png');
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -63,6 +69,20 @@ body::before {
     opacity: 1;
 }
 
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .names {
+        font-size: 56px;
+    }
+
+    .welcome-name {
+        font-size: 42px;
+    }
+}
+
 @media (max-width: 480px) {
     body {
         padding: 0;
@@ -70,6 +90,14 @@ body::before {
 
     .container {
         border-radius: 0;
+    }
+
+    .names {
+        font-size: 46px;
+    }
+
+    .welcome-content {
+        padding: 40px 20px;
     }
 }
 
@@ -86,7 +114,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(to bottom, var(--bg-cream) 0%, rgba(250, 249, 246, 0) 40%), url('/matrimonio-juan-valentina/assets/images/bg_bokeh.png');
+    background-image: linear-gradient(to bottom, var(--bg-cream) 0%, rgba(250, 249, 246, 0) 40%), url('/assets/images/bg_bokeh.png');
     background-size: cover;
     background-position: top center;
     filter: blur(2px);
@@ -708,7 +736,7 @@ body::before {
     background-image:
         radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(184, 150, 62, 0.05) 0%, transparent 50%),
-        url('/matrimonio-juan-valentina/assets/images/bg_bokeh.png');
+        url('/assets/images/bg_bokeh.png');
     background-size: cover;
     background-position: center;
     filter: blur(5px);

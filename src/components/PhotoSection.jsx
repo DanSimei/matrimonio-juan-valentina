@@ -1,16 +1,17 @@
 import React from 'react';
 
 const PhotoSection = () => {
+    const baseUrl = import.meta.env.BASE_URL;
     return (
         <section className="photo-container">
             <div className="photo-wrapper">
-                <img src="/matrimonio-juan-valentina/assets/images/valentina.png" className="photo-half photo-valentina" alt="Valentina" />
-                <img src="/matrimonio-juan-valentina/assets/images/juan.png" className="photo-half photo-juan" alt="Juan" />
+                <img src={`${baseUrl}assets/images/valentina.png`} className="photo-half photo-valentina" alt="Valentina" />
+                <img src={`${baseUrl}assets/images/juan.png`} className="photo-half photo-juan" alt="Juan" />
             </div>
             <div className="wavy-divider">
                 <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-                    <path
-                        d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,149.3C672,149,768,203,864,213.3C960,224,1056,192,1152,160C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                    <path fill="#faf9f6" fillOpacity="1"
+                        d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
                     </path>
                 </svg>
             </div>

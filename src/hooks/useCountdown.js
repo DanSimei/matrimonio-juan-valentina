@@ -46,3 +46,5 @@ export const useCountdown = (targetDate) => {
 
     return timeLeft;
 };
+
+export default useCountdown;

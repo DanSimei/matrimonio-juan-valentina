@@ -1,14 +1,15 @@
 import React from 'react';
 
 const GiftSection = () => {
+    const baseUrl = import.meta.env.BASE_URL;
     return (
         <section className="gift-box reveal">
-            <img src="/matrimonio-juan-valentina/assets/images/sobre.png" className="envelope-img" alt="Sobre" />
+            <img src={`${baseUrl}assets/images/sobre.png`} className="envelope-img" alt="Sobre" />
 
             <p className="gift-desc">Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros,</p>
             <span className="gift-highlight">tendremos lluvia de sobres.</span>
 
-            <img src="/matrimonio-juan-valentina/assets/images/separador1.png" className="separator-img" alt="Separador" />
+            <img src={`${baseUrl}assets/images/separador1.png`} className="separator-img" alt="Separador" />
         </section>
     );
 };

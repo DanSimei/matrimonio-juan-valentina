@@ -14,9 +14,19 @@ const WeddingInvitation = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasEntered, setHasEntered] = useState(false);
     const weddingDate = '2026-05-23T16:00:00';
+    const baseUrl = import.meta.env.BASE_URL;
 
     // Format the guest name: decode URL characters and replace hyphens with spaces
     const formattedName = guestName ? decodeURIComponent(guestName).replace(/-/g, ' ') : '';
+
+    useEffect(() => {
+        if (!hasEntered) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+            window.scrollTo(0, 0);
+        }
+    }, [hasEntered]);
 
     useEffect(() => {
         if (hasEntered) {
@@ -55,10 +65,10 @@ const WeddingInvitation = () => {
             >
                 <div className="top-wrapper">
                     <div className="corner-fl corner-tl">
-                        <img src="/matrimonio-juan-valentina/assets/images/corner_br.png" alt="" />
+                        <img src={`${baseUrl}assets/images/corner_br.png`} alt="" />
                     </div>
                     <div className="corner-fl corner-tr">
-                        <img src="/matrimonio-juan-valentina/assets/images/corner_br.png" alt="" />
+                        <img src={`${baseUrl}assets/images/corner_br.png`} alt="" />
                     </div>
 
                     <Header />
@@ -66,10 +76,10 @@ const WeddingInvitation = () => {
                 </div>
 
                 <div className="corner-fl corner-bl">
-                    <img src="/matrimonio-juan-valentina/assets/images/corner_br.png" alt="" />
+                    <img src={`${baseUrl}assets/images/corner_br.png`} alt="" />
                 </div>
                 <div className="corner-fl corner-br">
-                    <img src="/matrimonio-juan-valentina/assets/images/corner_br.png" alt="" />
+                    <img src={`${baseUrl}assets/images/corner_br.png`} alt="" />
                 </div>
 
                 <Countdown targetDate={weddingDate} />

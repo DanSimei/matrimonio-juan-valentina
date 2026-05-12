@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const WelcomeScreen = ({ guestName, onEnter }) => {
     const [isFading, setIsFading] = useState(false);
+    const baseUrl = import.meta.env.BASE_URL;
 
     const handleEnter = () => {
         setIsFading(true);
@@ -13,10 +14,10 @@ const WelcomeScreen = ({ guestName, onEnter }) => {
             <div className="welcome-content">
                 {/* Decorative corners */}
                 <div className="corner-fl corner-tl" style={{ opacity: 0.4 }}>
-                    <img src="/matrimonio-juan-valentina/assets/images/corner_br.png" alt="" />
+                    <img src={`${baseUrl}assets/images/corner_br.png`} alt="" />
                 </div>
                 <div className="corner-fl corner-br" style={{ opacity: 0.4 }}>
-                    <img src="/matrimonio-juan-valentina/assets/images/corner_br.png" alt="" />
+                    <img src={`${baseUrl}assets/images/corner_br.png`} alt="" />
                 </div>
 
                 <p className="welcome-greeting">¡Hola!</p>

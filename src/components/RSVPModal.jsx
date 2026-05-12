@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
+    const baseUrl = import.meta.env.BASE_URL;
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
@@ -124,7 +125,7 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
                 ) : (
                     <div id="success-message" style={{ display: 'block' }}>
                         <div style={{ marginBottom: '20px' }}>
-                            <img src="/matrimonio-juan-valentina/assets/images/hearth.png" alt="heart" style={{ width: '50px', height: 'auto' }} />
+                            <img src={`${baseUrl}assets/images/hearth.png`} alt="heart" style={{ width: '50px', height: 'auto' }} />
                         </div>
                         <h2>¡Muchas Gracias!</h2>
                         <p style={{ color: 'var(--text-muted)' }}>Tu respuesta ha sido registrada.</p>
