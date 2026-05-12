@@ -4,10 +4,12 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
     const baseUrl = import.meta.env.BASE_URL;
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [hasGuest, setHasGuest] = useState(false);
     const [formData, setFormData] = useState({
         nombre: prefilledName || '',
         asistencia: 'Sí',
         invitados: '1',
+        acompanante: '',
         mensaje: ''
     });
 
@@ -21,8 +23,17 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWHVICDd2GsUJ-FMRqz6Re0BYTTiDnttyHg5cgGkuFd9dzh3e3IPYbvLyFUJvXR_OO/exec';
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const { name, value, type, checked } = e.target;
+        if (type === 'checkbox' && name === 'hasGuest') {
+            setHasGuest(checked);
+            setFormData(prev => ({ 
+                ...prev, 
+                invitados: checked ? '2' : '1',
+                acompanante: checked ? prev.acompanante : '' 
+            }));
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -66,7 +77,7 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
                         <h2 className="rsvp-title">Confirmar Asistencia</h2>
                         <form className="rsvp-form" onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="nombre">Nombre Completo</label>
+                                <label htmlFor="nombre">Tu Nombre Completo</label>
                                 <input
                                     type="text"
                                     id="nombre"
@@ -102,8 +113,36 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
                                 </div>
                             </div>
 
-                            {/* Removed guests select as per user request (1 person per link) */}
-                            <input type="hidden" name="invitados" value="1" />
+                            {formData.asistencia === 'Sí' && (
+                                <>
+                                    <div className="form-group checkbox-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '15px 0' }}>
+                                        <input
+                                            type="checkbox"
+                                            id="hasGuest"
+                                            name="hasGuest"
+                                            checked={hasGuest}
+                                            onChange={handleChange}
+                                            style={{ width: 'auto', cursor: 'pointer' }}
+                                        />
+                                        <label htmlFor="hasGuest" style={{ cursor: 'pointer', margin: 0, fontSize: '14px' }}>Llevaré un acompañante</label>
+                                    </div>
+
+                                    {hasGuest && (
+                                        <div className="form-group reveal active" style={{ animation: 'fadeInUp 0.5s ease' }}>
+                                            <label htmlFor="acompanante">Nombre del Acompañante</label>
+                                            <input
+                                                type="text"
+                                                id="acompanante"
+                                                name="acompanante"
+                                                placeholder="Nombre de tu pareja o amigo"
+                                                required={hasGuest}
+                                                value={formData.acompanante}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    )}
+                                </>
+                            )}
 
                             <div className="form-group">
                                 <label htmlFor="mensaje">Mensaje (Opcional)</label>
