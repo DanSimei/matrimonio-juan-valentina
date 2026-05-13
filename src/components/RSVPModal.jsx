@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
     const baseUrl = import.meta.env.BASE_URL;
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [hasGuest, setHasGuest] = useState(false);
     const [companionNames, setCompanionNames] = useState(['']); // Array to hold multiple guest names
@@ -22,9 +23,18 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
             const alreadySubmitted = localStorage.getItem(storageKey);
             if (alreadySubmitted === 'true') {
                 setIsSubmitted(true);
+            } else {
+                setIsSubmitted(false);
             }
         }
     }, [isOpen, storageKey]);
+
+    // Reset editing mode when modal closes
+    useEffect(() => {
+        if (!isOpen) {
+            setIsEditing(false);
+        }
+    }, [isOpen]);
 
     useEffect(() => {
         if (prefilledName) {
@@ -105,6 +115,7 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
             // Mark as submitted in local storage
             localStorage.setItem(storageKey, 'true');
             setIsSubmitted(true);
+            setIsEditing(false); // Done editing
         } catch (error) {
             console.error('Error:', error);
             alert('Hubo un error al enviar. Por favor intenta de nuevo.');
@@ -125,9 +136,9 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
             <div className="modal-content">
                 <button className="close-modal" onClick={onClose}>&times;</button>
 
-                {!isSubmitted ? (
+                {(!isSubmitted || isEditing) ? (
                     <div id="rsvp-form-container">
-                        <h2 className="rsvp-title">Confirmar Asistencia</h2>
+                        <h2 className="rsvp-title">{isEditing ? 'Actualizar Respuesta' : 'Confirmar Asistencia'}</h2>
                         <form className="rsvp-form" onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="nombre">Tu Nombre Completo</label>
@@ -234,8 +245,14 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
                             </div>
 
                             <button type="submit" className="btn-submit" disabled={isLoading}>
-                                {isLoading ? 'Enviando...' : 'Enviar Confirmación'}
+                                {isLoading ? 'Enviando...' : (isEditing ? 'Actualizar Confirmación' : 'Enviar Confirmación')}
                             </button>
+                            
+                            {isEditing && (
+                                <button type="button" className="btn-submit btn-outline" style={{ marginTop: '0' }} onClick={() => setIsEditing(false)}>
+                                    Cancelar
+                                </button>
+                            )}
                         </form>
                     </div>
                 ) : (
@@ -245,9 +262,8 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
                         </div>
                         <h2>¡Muchas Gracias!</h2>
                         <p style={{ color: 'var(--text-muted)' }}>Tu respuesta ya ha sido registrada.</p>
-                        <button className="btn-submit" style={{ width: '100%', marginTop: '20px' }} onClick={() => {
-                            setIsSubmitted(false);
-                            localStorage.removeItem(storageKey);
+                        <button className="btn-submit btn-outline" style={{ width: '100%', marginTop: '20px' }} onClick={() => {
+                            setIsEditing(true);
                         }}>Cambiar mi respuesta</button>
                     </div>
                 )}

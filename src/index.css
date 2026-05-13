@@ -570,6 +570,20 @@ body::before {
     box-shadow: 0 6px 20px rgba(45, 74, 30, 0.3);
 }
 
+.btn-outline {
+    background-color: transparent !important;
+    border: 1px solid rgba(184, 150, 62, 0.4) !important;
+    color: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+.btn-outline:hover {
+    background-color: rgba(184, 150, 62, 0.05) !important;
+    border-color: var(--accent) !important;
+    transform: translateY(-1px) !important;
+}
+
+
 /* Footer */
 .footer {
     text-align: center;
