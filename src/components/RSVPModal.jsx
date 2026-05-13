@@ -54,7 +54,7 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
         }
     }, [formData.invitados]);
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwV2oUwSO_PJZ0qE5bdGwAKm2csQ8IDgxWQEkpEgqpaLHTa0Wimy3SpsKczivNElSda/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwk2YZhJ34BfuFZ-7_Z9qQpHCMj1n7Rxi1XvrlLyl_9T9Ntz4L18-9RHPNpKiRCc3C6/exec';
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
