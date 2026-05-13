@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
+const RSVPModal = ({ isOpen, onClose, prefilledName, canHaveGuest = true }) => {
     const baseUrl = import.meta.env.BASE_URL;
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -113,7 +113,7 @@ const RSVPModal = ({ isOpen, onClose, prefilledName }) => {
                                 </div>
                             </div>
 
-                            {formData.asistencia === 'Sí' && (
+                            {formData.asistencia === 'Sí' && canHaveGuest && (
                                 <>
                                     <label className="checkbox-container">
                                         <input
