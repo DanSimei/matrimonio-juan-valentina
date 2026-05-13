@@ -13,6 +13,19 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
         mensaje: ''
     });
 
+    // Storage key depends on the guest name to allow multiple RSVPs on same device if names differ
+    const storageKey = `wedding_rsvp_${(prefilledName || 'generic').replace(/\s+/g, '_')}`;
+
+    // Check if already submitted on mount or when modal opens
+    useEffect(() => {
+        if (isOpen) {
+            const alreadySubmitted = localStorage.getItem(storageKey);
+            if (alreadySubmitted === 'true') {
+                setIsSubmitted(true);
+            }
+        }
+    }, [isOpen, storageKey]);
+
     useEffect(() => {
         if (prefilledName) {
             setFormData(prev => ({ ...prev, nombre: prefilledName }));
@@ -89,6 +102,8 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
                 body: JSON.stringify(payload)
             });
 
+            // Mark as submitted in local storage
+            localStorage.setItem(storageKey, 'true');
             setIsSubmitted(true);
         } catch (error) {
             console.error('Error:', error);
@@ -229,8 +244,11 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
                             <img src={`${baseUrl}assets/images/hearth.png`} alt="heart" style={{ width: '50px', height: 'auto' }} />
                         </div>
                         <h2>¡Muchas Gracias!</h2>
-                        <p style={{ color: 'var(--text-muted)' }}>Tu respuesta ha sido registrada.</p>
-                        <button className="btn-submit" style={{ width: '100%', marginTop: '20px' }} onClick={onClose}>Cerrar</button>
+                        <p style={{ color: 'var(--text-muted)' }}>Tu respuesta ya ha sido registrada.</p>
+                        <button className="btn-submit" style={{ width: '100%', marginTop: '20px' }} onClick={() => {
+                            setIsSubmitted(false);
+                            localStorage.removeItem(storageKey);
+                        }}>Cambiar mi respuesta</button>
                     </div>
                 )}
             </div>
