@@ -177,7 +177,7 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
                                             >
                                                 {guestOptions.map(num => (
                                                     <option key={num} value={num}>
-                                                        {num} {num === 1 ? 'Persona' : 'Personas'}
+                                                        {num} {num === 1 ? 'Persona (solo yo)' : `Personas (conmigo)`}
                                                     </option>
                                                 ))}
                                             </select>
