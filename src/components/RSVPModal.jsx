@@ -132,7 +132,7 @@ const RSVPModal = ({ isOpen, onClose, prefilledName, maxGuests = 2 }) => {
     }
 
     return (
-        <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={(e) => e.target.classList.contains('modal-overlay') && onClose()}>
+        <div className={`modal-overlay ${isOpen ? 'active' : ''}`}>
             <div className="modal-content">
                 <button className="close-modal" onClick={onClose}>&times;</button>
 
