@@ -16,8 +16,13 @@ const WeddingInvitation = () => {
     const weddingDate = '2026-05-23T16:00:00';
     const baseUrl = import.meta.env.BASE_URL;
 
-    // Check if the guest is restricted to coming alone
-    const canHaveGuest = status !== 'alone';
+    // Parse maxGuests from status parameter
+    let maxGuests = 2; // Default
+    if (status === 'alone' || status === '1') {
+        maxGuests = 1;
+    } else if (status && !isNaN(status)) {
+        maxGuests = parseInt(status, 10);
+    }
 
     // Format the guest name: decode URL characters and replace hyphens with spaces
     const formattedName = guestName ? decodeURIComponent(guestName).replace(/-/g, ' ') : '';
@@ -104,7 +109,7 @@ const WeddingInvitation = () => {
                     isOpen={isModalOpen} 
                     onClose={() => setIsModalOpen(false)} 
                     prefilledName={formattedName}
-                    canHaveGuest={canHaveGuest}
+                    maxGuests={maxGuests}
                 />
             </div>
         </>
